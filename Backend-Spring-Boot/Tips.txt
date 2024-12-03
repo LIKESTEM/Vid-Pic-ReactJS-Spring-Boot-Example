@@ -1,0 +1,37 @@
+1. How to find an occuppied port: 
+netstat -ano | findstr :8080 
+
+
+2. How to kill an occuppied port: 
+taskkill /PID 6256 /F 
+
+
+3. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,32 @@
+1. Create a new ReactJS app: 
+
+npx create-react-app vid-pic-fro 
+
+
+2. Force commands to be processed in terminal: 
+
+Set-ExecutionPolicy Bypass -Scope Process -Force 
+
+
+3. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
