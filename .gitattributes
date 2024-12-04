@@ -1,1 +1,2 @@
 Frontend-ReactJS/vid-pic-fro filter=lfs diff=lfs merge=lfs -text
+*.psd filter=lfs diff=lfs merge=lfs -text
