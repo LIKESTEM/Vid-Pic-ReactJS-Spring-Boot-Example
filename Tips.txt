@@ -1,0 +1,38 @@
+1. Install and initialize git large file storage: 
+
+git lfs install
+
+- You only nee to run this once per user account.
+
+
+2. 
+
+git lfs track "*.psd"
+
+git add .gitattributes
+
+
+and therefore continue using your github or git commands...
+
+
+3. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
