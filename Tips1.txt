@@ -1,10 +1,20 @@
 1. Create a new ReactJS app: 
 
-npx create-react-app vid-pic-fro 
+Yarn: 
 
-OR 
+npm install -g yarn
 
-npx create-react-app@latest vid-pic-fro 
+
+yarn create react-app your-project-name
+
+
+yarn start
+
+
+# links: 
+
+https://chatgpt.com/share/675989b0-3fdc-8010-bb18-292c9a818c63 
+
 
 
 2. Force commands to be processed in terminal: 
@@ -38,10 +48,15 @@ yarn add axios
 yarn add react-router-dom
 
 
-6. 
+6. How to find an occuppied port: 
+netstat -ano | findstr :8080 
 
 
+How to kill an occuppied port: 
+taskkill /PID 6256 /F 
 
+
+7. 
 
 
 
