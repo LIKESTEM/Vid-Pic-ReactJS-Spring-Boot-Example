@@ -16,35 +16,29 @@ function ForgotPassword() {
   };
 
   return (
-    <div className="container mt-5 pt-5">
-      <div className="row justify-content-center">
-        <div className="col-md-6">
-          <div className="card shadow-sm">
-            <div className="card-body">
-              <h2 className="card-title text-center mb-4">Forgot Password</h2>
-              <form onSubmit={handleForgotPassword}>
-                <div className="mb-3">
-                  <label htmlFor="email" className="form-label">Email Address</label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="text-center">
-                  <button type="submit" className="btn btn-primary w-100">
-                    Send Reset Link
-                  </button>
-                </div>
-              </form>
-              {message && <p className="mt-3 text-center">{message}</p>}
-            </div>
+    <div className="container mt-5 pt-3">
+      <h2 className="text-center mb-4">Forgot Password</h2>
+      <div className="border rounded p-4 shadow-sm bg-white">
+        <form onSubmit={handleForgotPassword}>
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">
+              Email Address
+            </label>
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
           </div>
-        </div>
+          <button type="submit" className="btn btn-primary w-100">
+            Send Reset Link
+          </button>
+        </form>
+        {message && <p className="mt-3 text-center">{message}</p>}
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ import Login from "./security/Login";
 import Register from "./security/Register";
 import ForgotPassword from "./security/ForgotPassword";
 import ResetPassword from "./security/ResetPassword";
+import VerifyMfa from './security/VerifyMfa';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/verify-mfa" element={<VerifyMfa />} />
         </Routes>
       </div>
     </Router>

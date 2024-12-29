@@ -20,35 +20,29 @@ function ResetPassword() {
   };
 
   return (
-    <div className="container mt-5 pt-5">
-      <div className="row justify-content-center">
-        <div className="col-md-6">
-          <div className="card shadow-sm">
-            <div className="card-body">
-              <h2 className="card-title text-center mb-4">Reset Password</h2>
-              <form onSubmit={handleResetPassword}>
-                <div className="mb-3">
-                  <label htmlFor="newPassword" className="form-label">New Password</label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    id="newPassword"
-                    placeholder="Enter new password"
-                    value={newPassword}
-                    onChange={(e) => setNewPassword(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="text-center">
-                  <button type="submit" className="btn btn-primary w-100">
-                    Reset Password
-                  </button>
-                </div>
-              </form>
-              {message && <p className="mt-3 text-center">{message}</p>}
-            </div>
+    <div className="container mt-5 pt-3">
+      <h2 className="text-center mb-4">Reset Password</h2>
+      <div className="border rounded p-4 shadow-sm bg-white">
+        <form onSubmit={handleResetPassword}>
+          <div className="mb-3">
+            <label htmlFor="newPassword" className="form-label">
+              New Password
+            </label>
+            <input
+              type="password"
+              className="form-control"
+              id="newPassword"
+              placeholder="Enter new password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              required
+            />
           </div>
-        </div>
+          <button type="submit" className="btn btn-primary w-100">
+            Reset Password
+          </button>
+        </form>
+        {message && <p className="mt-3 text-center">{message}</p>}
       </div>
     </div>
   );

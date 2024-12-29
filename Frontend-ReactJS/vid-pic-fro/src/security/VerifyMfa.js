@@ -17,47 +17,43 @@ function VerifyMfa() {
   };
 
   return (
-    <div className="container mt-5 pt-5">
-      <div className="row justify-content-center">
-        <div className="col-md-6">
-          <div className="card shadow-sm">
-            <div className="card-body">
-              <h2 className="card-title text-center mb-4">Verify MFA</h2>
-              <form onSubmit={handleVerifyMfa}>
-                <div className="mb-3">
-                  <label htmlFor="username" className="form-label">Username</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="username"
-                    placeholder="Enter username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="mfaToken" className="form-label">MFA Token</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="mfaToken"
-                    placeholder="Enter MFA token"
-                    value={mfaToken}
-                    onChange={(e) => setMfaToken(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="text-center">
-                  <button type="submit" className="btn btn-primary w-100">
-                    Verify MFA
-                  </button>
-                </div>
-              </form>
-              {message && <p className="mt-3 text-center">{message}</p>}
-            </div>
+    <div className="container mt-5 pt-3">
+      <h2 className="text-center mb-4">Verify MFA</h2>
+      <div className="border rounded p-4 shadow-sm bg-white">
+        <form onSubmit={handleVerifyMfa}>
+          <div className="mb-3">
+            <label htmlFor="username" className="form-label">
+              Username
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="username"
+              placeholder="Enter username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
           </div>
-        </div>
+          <div className="mb-3">
+            <label htmlFor="mfaToken" className="form-label">
+              MFA Token
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="mfaToken"
+              placeholder="Enter MFA token"
+              value={mfaToken}
+              onChange={(e) => setMfaToken(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit" className="btn btn-primary w-100">
+            Verify MFA
+          </button>
+        </form>
+        {message && <p className="mt-3 text-center">{message}</p>}
       </div>
     </div>
   );
