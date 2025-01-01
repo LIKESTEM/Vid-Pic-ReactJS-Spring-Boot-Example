@@ -1,61 +1,54 @@
 import React, { useState, useEffect } from "react";
-import './FetchFiles.css';
 import { getFiles } from "../services/filesService";
 
 function FetchFiles() {
   const [files, setFiles] = useState([]);
 
   useEffect(() => {
-    // Fetch metadata from backend
-    // const fetchFiles = async () => {
-    //   try {
-    //     const response = await axios.get("http://localhost:8080/api/files");
-    //     setFiles(response.data);
-    //   } catch (error) {
-    //     console.error("Error fetching files:", error);
-    //   }
-    // };
-
-    // fetchFiles();
-
     getFiles()
       .then((result) => {
-        setFiles(result.data)
+        setFiles(result.data);
       })
-      .catch(err => {
+      .catch((err) => {
         console.error("Error fetching files:", err);
       });
-
   }, []);
 
   return (
-    <div className="App mt-5 pt-3">
-      <h2 className="text-center">Uploaded Files</h2>
+    <div className="container mt-5 pt-3">
+      <h2 className="text-center text-primary mb-4">Uploaded Files</h2>
       {files.length === 0 ? (
-        <p className="text-center">No files found.</p>
+        <div className="alert alert-warning text-center">
+          No files found.
+        </div>
       ) : (
-        <div>
+        <div className="row g-3">
           {files.map((file) => (
-            <div className="mb-4" key={file.id}>
-              <h3 className="text-center text-decoration-underline fw-normal pb-3">{file.title}</h3>
-              <div className="text-center py-2 ">
-                <img
-                  className="img-fluid d-block mx-auto w-50 w-md-75 w-sm-100"
-                  src={`http://localhost:8080${file.imageUrl}`}
-                  alt={file.title}
-                />
+            <div className="col-md-6 col-lg-4" key={file.id}>
+              <div className="card h-100 shadow-sm">
+                <div className="card-body d-flex flex-column">
+                  <h5 className="card-title text-center text-decoration-underline">
+                    {file.title}
+                  </h5>
+                  <div className="d-flex justify-content-center align-items-center">
+                    <img
+                      className="img-fluid rounded w-100 h-100 object-fit-cover"
+                      src={`http://localhost:8080${file.imageUrl}`}
+                      alt={file.title}
+                      style={{ maxHeight: "200px" }}
+                    />
+                  </div>
+                  <div className="ratio ratio-16x9 mt-3">
+                    <video className="w-100" controls>
+                      <source
+                        src={`http://localhost:8080${file.videoUrl}`}
+                        type="video/mp4"
+                      />
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                </div>
               </div>
-              <br />
-              <div className="ratio ratio-16x9 mx-auto w-50 w-md-75 w-sm-100">
-                <video className="w-100" controls>
-                  <source
-                    src={`http://localhost:8080${file.videoUrl}`}
-                    type="video/mp4"
-                  />
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <hr />
             </div>
           ))}
         </div>
