@@ -24,6 +24,7 @@ public class SecurityConfiguration {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**", "/api/files/**").permitAll() // Public endpoints
+                        .requestMatchers("/api/files/upload").hasRole("Admin")
                         .anyRequest().authenticated() // Secured endpoints
                 )
                 .addFilterBefore(

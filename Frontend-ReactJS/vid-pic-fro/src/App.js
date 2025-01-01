@@ -10,6 +10,7 @@ import Register from "./security/Register";
 import ForgotPassword from "./security/ForgotPassword";
 import ResetPassword from "./security/ResetPassword";
 import VerifyMfa from './security/VerifyMfa';
+import Logout from './security/Logout';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path='/get-files' element={<FetchFiles/>}/>
           
           <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />

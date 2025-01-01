@@ -107,8 +107,8 @@ public class AuthenticationService {
         message.setSubject("Password Reset Request");
         message.setText("Hi " + user.getUsername() + ",\n\n"
                 + "You requested to reset your password. " +
-                "Use the following link to reset your password:\n"
-                + "https://localhost:8080/reset-password?token=" + resetToken + "\n\n"
+                "Use the following link to reset your password: \n"
+                + "http://localhost:3000/reset-password?token=" + resetToken + "\n\n "
                 + "This link will expire in 15 minutes.\n\n"
                 + "If you did not request this, please ignore this email.\n\n"
                 + "Best regards,\nLIKESTEM");

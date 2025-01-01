@@ -23,7 +23,7 @@ public class User {
     private String email;
     private String contactNumber;
 
-    private Boolean mfaEnabled = false;
+    private Boolean mfaEnabled = true;
     private String mfaToken;
 
     private String resetToken;
