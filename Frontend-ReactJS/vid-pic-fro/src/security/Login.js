@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -75,9 +75,15 @@ function Login() {
               required
             />
           </div>
-          <button type="submit" className="btn btn-primary w-100">
+          <button type="submit" className="btn btn-primary w-100 mb-2">
             Login
           </button>
+          <NavLink
+            to="/forgot-password"
+            className="d-block text-start text-decoration-none text-primary"
+          >
+            Forgot Password?
+          </NavLink>
         </form>
         {mfaRequired && (
           <div className="mt-4">

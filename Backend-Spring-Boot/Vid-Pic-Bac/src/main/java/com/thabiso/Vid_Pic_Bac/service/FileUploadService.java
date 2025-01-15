@@ -1,7 +1,7 @@
 package com.thabiso.Vid_Pic_Bac.service;
 
-import com.thabiso.Vid_Pic_Bac.model.FileUpload;
 import com.thabiso.Vid_Pic_Bac.model.FileUploadDTO;
+import com.thabiso.Vid_Pic_Bac.model.FileUploader;
 import com.thabiso.Vid_Pic_Bac.repo.FileUploadRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +22,7 @@ public class FileUploadService {
             byte[] imageBytes,
             byte[] videoBytes
     ) {
-        FileUpload fileUpload = new FileUpload(title, imageBytes, videoBytes);
+        FileUploader fileUpload = new FileUploader(title, imageBytes, videoBytes);
         fileUploadRepo.save(fileUpload);
         return new ResponseEntity<>(
                 "The files have been persisted successfully!",
@@ -37,6 +37,9 @@ public class FileUploadService {
             dto.setTitle(file.getTitle());
             dto.setImageUrl("/api/files/" + file.getId() + "/image");
             dto.setVideoUrl("/api/files/" + file.getId() + "/video");
+            dto.setLikes(file.getLikes());
+            dto.setSubscriptions(file.getSubscriptions());
+            dto.setDislikes(file.getDislikes());
             return dto;
         }).collect(Collectors.toList());
     }
@@ -48,4 +51,23 @@ public class FileUploadService {
     public byte[] getVideo(Long id) {
         return fileUploadRepo.findById(id).get().getVideo();
     }
+
+    public ResponseEntity<String> updateLikes(Long id, boolean isLike) {
+        FileUploader file = fileUploadRepo.findById(id).orElseThrow(() -> new RuntimeException("File not found"));
+        if (isLike) {
+            file.setLikes(file.getLikes() + 1);
+        } else {
+            file.setDislikes(file.getDislikes() + 1);
+        }
+        fileUploadRepo.save(file);
+        return new ResponseEntity<>("Updated successfully!", HttpStatus.OK);
+    }
+
+    public ResponseEntity<String> updateSubscriptions(Long id) {
+        FileUploader file = fileUploadRepo.findById(id).orElseThrow(() -> new RuntimeException("File not found"));
+        file.setSubscriptions(file.getSubscriptions() + 1);
+        fileUploadRepo.save(file);
+        return new ResponseEntity<>("Subscribed successfully!", HttpStatus.OK);
+    }
+
 }

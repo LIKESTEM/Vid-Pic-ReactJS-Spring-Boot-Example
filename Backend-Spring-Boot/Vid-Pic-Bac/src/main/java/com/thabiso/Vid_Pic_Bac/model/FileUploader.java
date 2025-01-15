@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @RequiredArgsConstructor
 @Table(name = "file_upload")
-public class FileUpload {
+public class FileUploader {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,7 +21,11 @@ public class FileUpload {
     @Lob
     private byte[] video;
 
-    public FileUpload(String title, byte[] image, byte[] video) {
+    private int likes = 0;  // New field
+    private int dislikes = 0;  // New field
+    private Long subscriptions = 0L;  // New field
+
+    public FileUploader(String title, byte[] image, byte[] video) {
         this.title = title;
         this.image = image;
         this.video = video;

@@ -6,7 +6,7 @@ const Logout = () => {
 
     const handleLogout = async () => {
         try {
-            const response = await axios.post('http://localhost:8080//api/auth/logout', {}, { withCredentials: true });
+            const response = await axios.post('http://localhost:8080/api/auth/logout', { withCredentials: true });
             setMessage(response.data); // Will show "Logout successful!"
         } catch (error) {
             console.error('Error logging out', error);
