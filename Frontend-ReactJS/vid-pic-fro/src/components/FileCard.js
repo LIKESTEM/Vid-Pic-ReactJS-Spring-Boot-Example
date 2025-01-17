@@ -6,7 +6,7 @@ function FileCard({ file, onUpdate }) {
     axios
       .put(`http://localhost:8080/api/files/${file.id}/like`)
       .then(() => {
-        onUpdate(file.id, { likes: file.likes + 1 });  // Update the likes count immediately
+        onUpdate(file.id, { likes: file.likes + 1 }); // Update the likes count immediately
       });
   };
 
@@ -14,7 +14,7 @@ function FileCard({ file, onUpdate }) {
     axios
       .put(`http://localhost:8080/api/files/${file.id}/dislike`)
       .then(() => {
-        onUpdate(file.id, { dislikes: file.dislikes + 1 });  // Update the dislikes count immediately
+        onUpdate(file.id, { dislikes: file.dislikes + 1 }); // Update the dislikes count immediately
       });
   };
 
@@ -22,25 +22,28 @@ function FileCard({ file, onUpdate }) {
     axios
       .put(`http://localhost:8080/api/files/${file.id}/subscribe`)
       .then(() => {
-        onUpdate(file.id, { subscriptions: file.subscriptions + 1 });  // Update the subscriptions count immediately
+        onUpdate(file.id, { subscriptions: file.subscriptions + 1 }); // Update the subscriptions count immediately
       });
   };
 
   return (
     <div className="col-md-6 col-lg-4">
       <div className="card h-100 shadow-sm">
-        <div className="card-body d-flex flex-column">
-          <h5 className="card-title text-center text-decoration-underline">
-            {file.title}
-          </h5>
-          <div className="d-flex justify-content-center align-items-center">
-            <img
-              className="img-fluid rounded w-100 h-100 object-fit-cover"
-              src={`http://localhost:8080${file.imageUrl}`}
-              alt={file.title}
-              style={{ maxHeight: "200px" }}
-            />
+        <div className="position-relative">
+          <img
+            className="img-fluid rounded w-100 h-100 object-fit-cover"
+            src={`http://localhost:8080${file.imageUrl}`}
+            alt={file.title}
+            style={{ maxHeight: "200px" }}
+          />
+          <div
+            className="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center bg-dark text-white"
+            style={{ opacity: 0.7 }}
+          >
+            <h5 className="text-center px-3">{file.title}</h5>
           </div>
+        </div>
+        <div className="card-body d-flex flex-column">
           <div className="ratio ratio-16x9 mt-3">
             <video className="w-100" controls>
               <source
