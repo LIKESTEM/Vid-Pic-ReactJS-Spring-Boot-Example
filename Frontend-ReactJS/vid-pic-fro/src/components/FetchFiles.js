@@ -4,18 +4,29 @@ import FileCard from "./FileCard";
 
 function FetchFiles() {
   const [files, setFiles] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
   const [filteredFiles, setFilteredFiles] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
+  // Fetch files when the component mounts
   useEffect(() => {
-    getFiles()
-      .then((result) => {
-        setFiles(result.data);
-        setFilteredFiles(result.data); // Initialize with all files
-      })
-      .catch((err) => {
-        console.error("Error fetching files:", err);
-      });
+    const fetchData = () => {
+      getFiles()
+        .then((result) => {
+          setFiles(result.data);
+        })
+        .catch((err) => {
+          console.error("Error fetching files:", err);
+        });
+    };
+
+    // Fetch initial data
+    fetchData();
+
+    // Set up polling to refresh data every 10 seconds
+    const intervalId = setInterval(fetchData, 10000); // Every 10 seconds
+
+    // Clean up interval when the component unmounts
+    return () => clearInterval(intervalId);
   }, []);
 
   // Update the file state when like, dislike, or subscribe is clicked
@@ -24,19 +35,21 @@ function FetchFiles() {
       const updatedFiles = prevFiles.map((file) =>
         file.id === id ? { ...file, ...updates } : file
       );
-      setFilteredFiles(updatedFiles);  // Ensure filteredFiles also gets updated
       return updatedFiles;
     });
   };
 
-  // Search functionality for filtering files dynamically
-  const handleSearchChange = (e) => {
-    const query = e.target.value;
-    setSearchQuery(query);
+  // Filter the files based on search query
+  useEffect(() => {
     const filtered = files.filter((file) =>
-      file.title.toLowerCase().includes(query.toLowerCase())
+      file.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
     setFilteredFiles(filtered);
+  }, [files, searchQuery]); // Depend on both files and searchQuery
+
+  // Search functionality for filtering files dynamically
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value); // The search input will trigger re-filtering
   };
 
   return (

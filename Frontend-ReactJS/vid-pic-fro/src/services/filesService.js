@@ -1,22 +1,22 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "http://localhost:8080"
+    baseURL: "http://localhost:8080",
+    withCredentials: true, // ✅ Ensure credentials are sent for authentication
 });
 
-// Function to get all files
+// Get all files
 const getFiles = () => api.get("/api/files");
 
-// create/upload new files
+// Upload files (with proper headers)
 const createFiles = (formData) => api.post(
-    "api/files/upload", 
+    "/api/files/upload",
     formData,
     {
         headers: {
             "Content-Type": "multipart/form-data",
-        },
+        }
     }
 );
 
 export { getFiles, createFiles };
-
